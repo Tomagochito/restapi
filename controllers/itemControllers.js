@@ -58,7 +58,15 @@ exports.getAllItems = async (req, res) => {
 
 
 exports.updateItem = async (req, res) => {
-
+    try {
+        const itemId = req.params.id;
+        const data = req.body;
+        const itemRef = db.collection('items').doc(itemId);
+        await itemRef.update(data);
+        res.status(200).send('Item updated');
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
    /* 
      #swagger.tags = ['Items']
      #swagger.description = 'Get all items entries'
@@ -75,6 +83,13 @@ exports.updateItem = async (req, res) => {
 
   exports.deleteItem = async (req, res) => {
 
+    try {
+        const itemId = req.params.id;
+        await db.collection('items').doc(itemId).delete();
+        res.status(200).send('Item deleted');
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
     /* 
       #swagger.tags = ['Items']
       #swagger.description = ''
@@ -96,6 +111,17 @@ exports.updateItem = async (req, res) => {
 
   exports.getItem = async (req, res) => {
 
+    try {
+        const itemId = req.params.id;
+        const itemDoc = await db.collection('items').doc(itemId).get();
+        if (!itemDoc.exists) {
+            res.status(404).send('Item not found');
+        } else {
+            res.status(200).json({ id: itemDoc.id, ...itemDoc.data() });
+        }
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
     /* 
       #swagger.tags = ['Items']
       #swagger.description = 'Get an item entry'
@@ -116,3 +142,4 @@ exports.updateItem = async (req, res) => {
     */
     
   }
+
