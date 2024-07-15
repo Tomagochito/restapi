@@ -9,6 +9,24 @@ exports.createItem = async (req, res) => {
     } catch (error) {
         res.status(400).send(error.message);
     }
+        /* 
+      #swagger.tags = ['Items']
+      #swagger.description = 'Get an item entry'
+      #swagger.summary = 'Get an item entry'
+      #swagger.parameters['id'] = {
+          description: 'Item id',
+          required: true,
+      }
+      #swagger.responses[404] = {
+          description: 'Item not found',
+      }
+      #swagger.responses[400] = {
+          description: 'Bad request',
+      }
+      #swagger.responses[200] = {
+          description: 'Get an item by id',
+      }
+    */
 };
 
 exports.getAllItems = async (req, res) => {
@@ -20,4 +38,21 @@ exports.getAllItems = async (req, res) => {
     } catch (error) {
         res.status(400).send(error.message);
     }
+        /* 
+      #swagger.tags = ['Items']
+      #swagger.description = 'Create an item'
+      #swagger.summary = 'Create an item'
+      #swagger.parameters['data'] = {
+          in: 'body',
+          description: 'Data to create an item',
+          required: true,
+      }
+      #swagger.responses[201] = {
+          description: 'Item successfully created',
+      }
+      #swagger.responses[400] = {
+          description: 'Bad request',
+      }
+    */
 };
+
