@@ -1,5 +1,4 @@
 require('dotenv').config()
-console.log('FIREBASE_ADMIN_API:', process.env.FIREBASE_ADMIN_API); // Para depuración
 
 const express = require('express');
 
