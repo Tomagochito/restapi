@@ -13,18 +13,120 @@
   "paths": {
     "/items": {
       "post": {
-        "description": "",
+        "tags": [
+          "Items"
+        ],
+        "summary": "Create an item",
+        "description": "Create an item",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "description": "Data to create an item",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        ],
         "responses": {
-          "default": {
-            "description": ""
+          "201": {
+            "description": "Item successfully created"
+          },
+          "400": {
+            "description": "Bad request"
           }
         }
       },
       "get": {
-        "description": "",
+        "tags": [
+          "Items"
+        ],
+        "summary": "Get all items entries",
+        "description": "Get all items entries",
         "responses": {
-          "default": {
+          "200": {
+            "description": "Items entries successfully obtained"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/items/{id}": {
+      "get": {
+        "tags": [
+          "Items"
+        ],
+        "summary": "Get an item entry",
+        "description": "Get an item entry",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Item id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get an item by id"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Items"
+        ],
+        "summary": "Get all items entries",
+        "description": "Get all items entries",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Items entries successfully obtained"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Items"
+        ],
+        "summary": "",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
             "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
           }
         }
       }
